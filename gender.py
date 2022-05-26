@@ -110,7 +110,7 @@ def find_gender_by_ending(word):
         'word': word,
         'definite_article': 'none',
         'indefinite_article': 'none',
-        'warning': 'Not_found: word not found in wordlist, nor found with ending'
+        'warning': 'Not_found: word not found'
     }
 
 
@@ -139,7 +139,7 @@ def build_word_information_list(word, gender):
         'word': word,
         'definite_article': 'none',
         'indefinite_article': 'none',
-        'warning': 'Found in word list, highly reliable'
+        'warning': 'Sure: Found in word list, highly reliable'
     }
     # it is a feminine word
     if 'f' in gender:
