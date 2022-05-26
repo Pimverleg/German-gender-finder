@@ -1,6 +1,8 @@
 # German-gender-finder
 Find the gender of the German word.
 
+You can use this script to find out what article your german word needs. Der, Die or Das
+
 ## Usage 
 
 Finding the gender of the word "Besuch" directly from the command line (cmd):
