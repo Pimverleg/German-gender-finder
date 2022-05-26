@@ -73,5 +73,11 @@ The script always returns a dictionary with a warning message detailing the reli
 
 ```
 
+The words in the word list are taken from:
+
+https://github.com/mejutoco/german-grammar-statistics
+
+I removed all words without a gender assigned.
+
     
 
