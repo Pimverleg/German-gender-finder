@@ -30,7 +30,7 @@ print(find_gender.get_gender_of_word('mutter'))
 The script always returns a dictionary with a warning message detailing the reliability:
 
 ```python
-# very reliable
+# very reliable, This will be the response in allmost all cases, due to the size of the wordlist
 {
   'word': 'somewordyouchose', 
   'definite_article': 'die',
