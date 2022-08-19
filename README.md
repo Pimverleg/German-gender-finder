@@ -21,7 +21,7 @@ print(find_gender.get_gender_of_word('mutter'))
 
 ## Notes
 
-1. The script first searches a world list.
+1. The script first searches a world list. the list has around 30.000 words. All commonly used words are there.
 2. If the script cannot find the word in the list it will use grammar rules to find its gender.
 3. All words that are exceptions to rules should be in the list.
 
