@@ -85,7 +85,7 @@ def find_gender_by_ending(word):
             'word': word,
             'definite_article': 'die',
             'indefinite_article': 'eine',
-            'warning': 'Unsure: However 90% of nouns ending in "e" are masculine'
+            'warning': 'Unsure: However 90% of nouns ending in "e" are feminine'
         }
 
     # now we are at the "educated guess" stage..
@@ -94,7 +94,7 @@ def find_gender_by_ending(word):
             'word': word,
             'definite_article': 'das',
             'indefinite_article': 'ein',
-            'warning': 'Unsure: However 90% of nouns starting with "ge" are feminine'
+            'warning': 'Unsure: However 90% of nouns starting with "ge" are neuter'
         }
 
     if word.endswith('t'):
