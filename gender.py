@@ -1,18 +1,16 @@
-import sys
-import random
+import csv
+from collections import defaultdict
+
+wordMap = defaultdict(list)
+with open('wordList.csv', encoding='utf8') as file:
+    dr = csv.DictReader(file)
+    for line in dr:
+        wordMap[line['Word']] = line['Gender']
 
 
 # this function tries to find the gender of the german word by its ending.
 # at this moment we have already checked the wordlist and not found a match
 def find_gender_by_ending(word):
-    # the empty message, we will fill it as we move along
-    word_info = {
-        'word': word,
-        'definite_article': 'none',
-        'indefinite_article': 'none',
-        'warning': 'Sure: Found in word list'
-    }
-
     # first checking the masculine endings,
     # exceptions to this rule have been added to the word list.
     # if you find a false positive please add it to the word list and make a pullrequest
@@ -119,41 +117,32 @@ def get_gender_of_word(word):
     # make it lowercase so capitalized words are also found
     word = word.lower()
 
-    # loop over the wordlist
-    lines = open('wordList.txt', encoding="utf8").readlines()
-    for line in lines:
+    # build the word_info dictionary
+    if word in wordMap:
+        word_info = {
+            'word': word,
+            'definite_article': 'none',
+            'indefinite_article': 'none',
+            'warning': 'Sure: Found in word list, highly reliable'
+        }
 
-        # split the list, so we get a list like this ['word','gender'] #( m,f,n )
-        word_gender_list = line.split(',')
+        gender = wordMap[word]
 
-        # build the word_info dictionary
-        if word in word_gender_list:
-            return build_word_information_list(word_gender_list[0], word_gender_list[1])
+        # it is a feminine word
+        if 'f' in gender:
+            word_info['definite_article'] = 'die'
+            word_info['indefinite_article'] = 'eine'
+
+        # it is a neuter word
+        if 'n' in gender:
+            word_info['definite_article'] = 'das'
+            word_info['indefinite_article'] = 'ein'
+
+        # it is a masculine word
+        if 'm' in gender:
+            word_info['definite_article'] = 'der'
+            word_info['indefinite_article'] = 'ein'
+
+        return word_info
 
     return find_gender_by_ending(word)
-
-
-# build the word_list dictionary
-def build_word_information_list(word, gender):
-    word_info = {
-        'word': word,
-        'definite_article': 'none',
-        'indefinite_article': 'none',
-        'warning': 'Sure: Found in word list, highly reliable'
-    }
-    # it is a feminine word
-    if 'f' in gender:
-        word_info['definite_article'] = 'die'
-        word_info['indefinite_article'] = 'eine'
-
-    # it is a neuter word
-    if 'n' in gender:
-        word_info['definite_article'] = 'das'
-        word_info['indefinite_article'] = 'ein'
-
-    # it is a masculine word
-    if 'm' in gender:
-        word_info['definite_article'] = 'der'
-        word_info['indefinite_article'] = 'ein'
-
-    return word_info
